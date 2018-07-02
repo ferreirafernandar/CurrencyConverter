@@ -1,0 +1,37 @@
+<div class="wrapper">
+  <div class="content">
+    <div class="input-group">
+      <label>Valor: </label>
+      <input type="number" [(ngModel)]="amount" required=true>
+      <small>(Valor a ser convertido) Ex: 100,50</small>
+    </div>
+
+    <div class="input-group">
+      <label>Da Moeda: </label>
+      <select [(ngModel)]="currencyFrom">
+      <option selected="selected">Selecione...</option>
+<option *ngFor="let currency of currencies; let i = index" [value]="currency.code">
+ {{currency.code}} - {{currency.name}}
+      </option>
+    </select>
+    </div>
+
+    <div class="input-group">
+      <label>Para Moeda: </label>
+      <select [(ngModel)]="currencyTo">
+    <option selected>Selecione...</option>
+<option *ngFor="let currency of currencies; let i = index" [value]="currency.code">
+ {{currency.code}} - {{currency.name}}
+    </option>
+  </select>
+    </div>
+
+    <div class="acoes">
+      <button class="converter" (click)="converter()">Converter</button>
+    </div>
+
+    <div *ngIf="result" class="resultado" style="float: right">
+ Resultado: {{result | currency: '$ '}}
+    </div>
+  </div>
+</div>
